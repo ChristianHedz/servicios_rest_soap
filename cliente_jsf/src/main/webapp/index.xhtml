@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+    <title>Gestión de Productos</title>
+    <h:outputStylesheet library="css" name="styles.css"/>
+</h:head>
+
+<h:body>
+    <div class="container">
+        <h1>Gestión de Productos</h1>
+
+        <h:messages styleClass="messages" errorClass="error-msg" infoClass="info-msg"/>
+
+        <div class="grid">
+            <div class="card">
+                <h2>Nuevo Producto</h2>
+                <h:form id="productForm">
+                    <table>
+                        <tr>
+                            <td>Nombre:</td>
+                            <td><h:inputText id="name" value="#{productBean.product.name}"/></td>
+                        </tr>
+                        <tr>
+                            <td>Descripción:</td>
+                            <td><h:inputText id="description" value="#{productBean.product.description}"/></td>
+                        </tr>
+                        <tr>
+                            <td>Precio:</td>
+                            <td><h:inputText id="price" value="#{productBean.product.price}"/></td>
+                        </tr>
+                        <tr>
+                            <td>Stock:</td>
+                            <td><h:inputText id="stock" value="#{productBean.product.stock}"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <h:commandButton id="btnCrear" value="Crear Producto" action="#{productBean.createProduct()}"/>
+                            </td>
+                        </tr>
+                    </table>
+                </h:form>
+            </div>
+
+            <div class="card">
+                <h2>Lista de Productos</h2>
+                
+                <h:panelGroup rendered="#{empty productBean.products}">
+                    <p class="empty">No hay productos registrados</p>
+                </h:panelGroup>
+
+                <h:dataTable value="#{productBean.products}" var="p" 
+                             styleClass="data-table"
+                             rendered="#{not empty productBean.products}">
+                    <h:column>
+                        <f:facet name="header">ID</f:facet>
+                        <h:outputText value="#{p.id}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Nombre</f:facet>
+                        <h:outputText value="#{p.name}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Descripción</f:facet>
+                        <h:outputText value="#{p.description}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Precio</f:facet>
+                        <h:outputText value="#{p.price}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Stock</f:facet>
+                        <h:outputText value="#{p.stock}"/>
+                    </h:column>
+                </h:dataTable>
+            </div>
+        </div>
+    </div>
+</h:body>
+
+</html>
