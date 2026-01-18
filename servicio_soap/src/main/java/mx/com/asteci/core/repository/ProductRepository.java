@@ -3,9 +3,9 @@ package mx.com.asteci.core.repository;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import mx.com.asteci.core.common.Constants;
 import mx.com.asteci.core.repository.entity.Product;
 import java.util.List;
-
 
 @Stateless
 public class ProductRepository {
@@ -20,7 +20,7 @@ public class ProductRepository {
 
     public List<Product> findAll() {
         return entityManager
-                .createQuery("SELECT p FROM Product p", Product.class)
+                .createQuery(Constants.QUERY_FIND_ALL_PRODUCTS, Product.class)
                 .getResultList();
     }
 }
