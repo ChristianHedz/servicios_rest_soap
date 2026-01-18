@@ -2,6 +2,7 @@ package mx.com.asteci.service;
 
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.json.bind.JsonbBuilder;
+import mx.com.asteci.constants.Constants;
 import mx.com.asteci.exception.ValidationException;
 import mx.com.asteci.model.ErrorResponse;
 import mx.com.asteci.model.Product;
@@ -25,7 +26,7 @@ public class ProductRestClient {
     public Product createProduct(Product product) {
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(URL))
-                .header("Content-Type", "application/json")
+                .header(Constants.CONTENT_TYPE, Constants.APPLICATION_JSON)
                 .POST(HttpRequest.BodyPublishers.ofString(JsonbBuilder.create().toJson(product)))
                 .build();
         
@@ -52,7 +53,7 @@ public class ProductRestClient {
             throw new UncheckedIOException(e);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
-            throw new IllegalStateException("Request interrupted", e);
+            throw new IllegalStateException(Constants.REQUEST_INTERRUPTED, e);
         }
     }
 }
