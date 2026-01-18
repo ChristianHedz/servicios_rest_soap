@@ -6,7 +6,6 @@ import mx.com.asteci.client.soap.ProductSoapClient;
 import mx.com.asteci.model.ProductRequest;
 import mx.com.asteci.model.ProductResponse;
 import mx.com.asteci.ws.ValidationException;
-
 import java.util.List;
 
 @Stateless
