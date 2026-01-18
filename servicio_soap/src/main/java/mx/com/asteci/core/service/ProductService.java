@@ -3,8 +3,8 @@ package mx.com.asteci.core.service;
 import jakarta.ejb.Stateless;
 import jakarta.inject.Inject;
 import jakarta.transaction.Transactional;
-import mx.com.asteci.core.model.Product;
 import mx.com.asteci.core.repository.ProductRepository;
+import mx.com.asteci.core.repository.entity.Product;
 
 import java.util.List;
 

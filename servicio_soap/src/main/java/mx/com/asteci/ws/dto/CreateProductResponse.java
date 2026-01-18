@@ -5,7 +5,7 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlType;
-import mx.com.asteci.core.model.Product;
+
 
 @XmlRootElement(name = "createProductResponse")
 @XmlType(name = "CreateProductResponseType", namespace = "http://ws.asteci.com.mx/")
@@ -13,20 +13,20 @@ import mx.com.asteci.core.model.Product;
 public class CreateProductResponse {
 
     @XmlElement(required = true)
-    private Product product;
+    private ProductDto product;
 
     public CreateProductResponse() {
     }
 
-    public CreateProductResponse(Product product) {
+    public CreateProductResponse(ProductDto product) {
         this.product = product;
     }
 
-    public Product getProduct() {
+    public ProductDto getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(ProductDto product) {
         this.product = product;
     }
 }

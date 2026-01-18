@@ -5,6 +5,11 @@ import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlType;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 
@@ -13,15 +18,22 @@ import java.math.BigDecimal;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class CreateProductRequest {
 
+    @NotBlank(message = "{product.name.notBlank}")
+    @Size(min = 3, max = 100, message = "{product.name.size}")
     @XmlElement(required = true)
     private String name;
 
+    @Size(max = 500, message = "{product.description.size}")
     @XmlElement
     private String description;
 
+    @NotNull(message = "{product.price.notNull}")
+    @DecimalMin(value = "0.01", message = "{product.price.decimalMin}")
     @XmlElement(required = true)
     private BigDecimal price;
 
+    @NotNull(message = "{product.stock.notNull}")
+    @Min(value = 0, message = "{product.stock.min}")
     @XmlElement(required = true)
     private Integer stock;
 

@@ -1,11 +1,13 @@
 package mx.com.asteci.ws.converter;
 
-import mx.com.asteci.core.model.Product;
+import mx.com.asteci.core.repository.entity.Product;
 import mx.com.asteci.ws.dto.CreateProductRequest;
 import mx.com.asteci.ws.dto.CreateProductResponse;
 import mx.com.asteci.ws.dto.ListProductsResponse;
+import mx.com.asteci.ws.dto.ProductDto;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ProductConverter {
 
@@ -18,11 +20,24 @@ public class ProductConverter {
         );
     }
 
+    public static ProductDto toDto(Product product) {
+        return new ProductDto(
+                product.getId(),
+                product.getName(),
+                product.getDescription(),
+                product.getPrice(),
+                product.getStock()
+        );
+    }
+
     public static CreateProductResponse toCreateResponse(Product product) {
-        return new CreateProductResponse(product);
+        return new CreateProductResponse(toDto(product));
     }
 
     public static ListProductsResponse toListResponse(List<Product> products) {
-        return new ListProductsResponse(products);
+        List<ProductDto> dtos = products.stream()
+                .map(ProductConverter::toDto)
+                .collect(Collectors.toList());
+        return new ListProductsResponse(dtos);
     }
 }

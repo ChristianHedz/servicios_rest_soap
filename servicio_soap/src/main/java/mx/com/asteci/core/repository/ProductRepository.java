@@ -3,8 +3,9 @@ package mx.com.asteci.core.repository;
 import jakarta.ejb.Stateless;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import mx.com.asteci.core.model.Product;
+import mx.com.asteci.core.repository.entity.Product;
 import java.util.List;
+
 
 @Stateless
 public class ProductRepository {

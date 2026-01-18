@@ -10,7 +10,7 @@ import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
-import mx.com.asteci.core.model.Product;
+import mx.com.asteci.core.repository.entity.Product;
 import mx.com.asteci.core.service.ProductService;
 import mx.com.asteci.ws.converter.ProductConverter;
 import mx.com.asteci.ws.dto.CreateProductRequest;
@@ -18,6 +18,7 @@ import mx.com.asteci.ws.dto.CreateProductResponse;
 import mx.com.asteci.ws.dto.ListProductsResponse;
 import mx.com.asteci.ws.exception.ValidationException;
 import mx.com.asteci.ws.exception.ValidationFaultBean;
+
 
 import java.util.List;
 import java.util.Set;
@@ -40,7 +41,7 @@ public class ProductWebService {
             @WebParam(name = "request") CreateProductRequest request) throws ValidationException {
 
         Product product = ProductConverter.toEntity(request);
-        validateProduct(product);
+        validateProduct(request);
 
         Product createdProduct = productService.createProduct(product);
         return ProductConverter.toCreateResponse(createdProduct);
@@ -53,11 +54,11 @@ public class ProductWebService {
         return ProductConverter.toListResponse(products);
     }
 
-    private void validateProduct(Product product) throws ValidationException {
+    private void validateProduct(CreateProductRequest product) throws ValidationException {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
-        
-        Set<ConstraintViolation<Product>> violations = validator.validate(product);
+
+        Set<ConstraintViolation<CreateProductRequest>> violations = validator.validate(product);
 
         if (!violations.isEmpty()) {
             List<String> violationMessages = violations.stream()
