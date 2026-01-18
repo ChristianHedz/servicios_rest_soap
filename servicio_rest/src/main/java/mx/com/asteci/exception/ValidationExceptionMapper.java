@@ -5,6 +5,7 @@ import jakarta.validation.ConstraintViolationException;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.ext.ExceptionMapper;
 import jakarta.ws.rs.ext.Provider;
+import mx.com.asteci.constants.Constants;
 import mx.com.asteci.model.ErrorResponse;
 
 import java.util.List;
@@ -19,15 +20,15 @@ public class ValidationExceptionMapper implements ExceptionMapper<ConstraintViol
                 .toList();
 
         return Response.status(Response.Status.BAD_REQUEST)
-                .entity(new ErrorResponse("Validación fallida", errors))
+                .entity(new ErrorResponse(Constants.VALIDATION_FAILED, errors))
                 .build();
     }
 
     private String formatViolation(ConstraintViolation<?> violation) {
         String field = violation.getPropertyPath().toString();
         // Remover prefijo del método (ej: "createProduct.request.name" -> "name")
-        if (field.contains(".")) {
-            field = field.substring(field.lastIndexOf(".") + 1);
+        if (field.contains(Constants.DOT)) {
+            field = field.substring(field.lastIndexOf(Constants.DOT) + 1);
         }
         return field + ": " + violation.getMessage();
     }
