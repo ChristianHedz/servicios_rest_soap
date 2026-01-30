@@ -1,24 +1,53 @@
 package mx.com.asteci.service;
 
-import jakarta.ejb.Stateless;
+import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import mx.com.asteci.client.soap.ProductSoapClient;
+import jakarta.transaction.Transactional;
+import mx.com.asteci.entity.Product;
 import mx.com.asteci.model.ProductRequest;
 import mx.com.asteci.model.ProductResponse;
-import mx.com.asteci.ws.ValidationException;
+import mx.com.asteci.repository.ProductRepository;
+
 import java.util.List;
 
-@Stateless
+@ApplicationScoped
 public class ProductService {
 
-    @Inject
-    private ProductSoapClient soapClient;
+    private ProductRepository productRepository;
 
-    public ProductResponse createProduct(ProductRequest request) throws ValidationException {
-        return soapClient.createProduct(request);
+    public ProductService() {
+    }
+
+    @Inject
+    public ProductService(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
+
+    @Transactional
+    public ProductResponse createProduct(ProductRequest request) {
+        Product product = new Product(
+                request.getName(),
+                request.getDescription(),
+                request.getPrice(),
+                request.getStock()
+        );
+        Product saved = productRepository.save(product);
+        return toResponse(saved);
     }
 
     public List<ProductResponse> listProducts() {
-        return soapClient.listProducts();
+        return productRepository.findAll().stream()
+                .map(this::toResponse)
+                .toList();
+    }
+
+    private ProductResponse toResponse(Product product) {
+        return new ProductResponse(
+                product.getId(),
+                product.getName(),
+                product.getDescription(),
+                product.getPrice(),
+                product.getStock()
+        );
     }
 }
