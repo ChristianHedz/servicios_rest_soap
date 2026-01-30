@@ -6,7 +6,6 @@ import mx.com.asteci.constants.Constants;
 import mx.com.asteci.exception.ValidationException;
 import mx.com.asteci.model.ErrorResponse;
 import mx.com.asteci.model.Product;
-
 import java.io.IOException;
 import java.io.UncheckedIOException;
 import java.net.URI;

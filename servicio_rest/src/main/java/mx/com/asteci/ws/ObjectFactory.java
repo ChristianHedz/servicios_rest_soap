@@ -56,11 +56,27 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link CreateProductResponse }
+     * 
+     */
+    public CreateProductResponse createCreateProductResponse() {
+        return new CreateProductResponse();
+    }
+
+    /**
      * Create an instance of {@link ListProducts }
      * 
      */
     public ListProducts createListProducts() {
         return new ListProducts();
+    }
+
+    /**
+     * Create an instance of {@link ListProductsResponse }
+     * 
+     */
+    public ListProductsResponse createListProductsResponse() {
+        return new ListProductsResponse();
     }
 
     /**
@@ -80,27 +96,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link CreateProductResponse }
-     * 
-     */
-    public CreateProductResponse createCreateProductResponse() {
-        return new CreateProductResponse();
-    }
-
-    /**
      * Create an instance of {@link CreateProductResponseType }
      * 
      */
     public CreateProductResponseType createCreateProductResponseType() {
         return new CreateProductResponseType();
-    }
-
-    /**
-     * Create an instance of {@link ListProductsResponse }
-     * 
-     */
-    public ListProductsResponse createListProductsResponse() {
-        return new ListProductsResponse();
     }
 
     /**
@@ -138,16 +138,16 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Object }{@code >}
+     * Create an instance of {@link JAXBElement }{@code <}{@link CreateProductResponse }{@code >}
      * 
      * @param value
      *     Java instance representing xml element's value.
      * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link Object }{@code >}
+     *     the new instance of {@link JAXBElement }{@code <}{@link CreateProductResponse }{@code >}
      */
     @XmlElementDecl(namespace = "http://ws.asteci.com.mx/", name = "createProductResponse")
-    public JAXBElement<Object> createCreateProductResponse(Object value) {
-        return new JAXBElement<Object>(_CreateProductResponse_QNAME, Object.class, null, value);
+    public JAXBElement<CreateProductResponse> createCreateProductResponse(CreateProductResponse value) {
+        return new JAXBElement<CreateProductResponse>(_CreateProductResponse_QNAME, CreateProductResponse.class, null, value);
     }
 
     /**
@@ -164,16 +164,16 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link Object }{@code >}
+     * Create an instance of {@link JAXBElement }{@code <}{@link ListProductsResponse }{@code >}
      * 
      * @param value
      *     Java instance representing xml element's value.
      * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link Object }{@code >}
+     *     the new instance of {@link JAXBElement }{@code <}{@link ListProductsResponse }{@code >}
      */
     @XmlElementDecl(namespace = "http://ws.asteci.com.mx/", name = "listProductsResponse")
-    public JAXBElement<Object> createListProductsResponse(Object value) {
-        return new JAXBElement<Object>(_ListProductsResponse_QNAME, Object.class, null, value);
+    public JAXBElement<ListProductsResponse> createListProductsResponse(ListProductsResponse value) {
+        return new JAXBElement<ListProductsResponse>(_ListProductsResponse_QNAME, ListProductsResponse.class, null, value);
     }
 
     /**

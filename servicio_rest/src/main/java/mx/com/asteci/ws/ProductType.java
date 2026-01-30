@@ -4,6 +4,7 @@ package mx.com.asteci.ws;
 import java.math.BigDecimal;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
+import jakarta.xml.bind.annotation.XmlElement;
 import jakarta.xml.bind.annotation.XmlType;
 
 
@@ -18,10 +19,10 @@ import jakarta.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="id" type="{http://www.w3.org/2001/XMLSchema}long" minOccurs="0"/&gt;
- *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="name" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
  *         &lt;element name="description" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="price" type="{http://www.w3.org/2001/XMLSchema}decimal" minOccurs="0"/&gt;
- *         &lt;element name="stock" type="{http://www.w3.org/2001/XMLSchema}int" minOccurs="0"/&gt;
+ *         &lt;element name="price" type="{http://www.w3.org/2001/XMLSchema}decimal"/&gt;
+ *         &lt;element name="stock" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -41,10 +42,12 @@ import jakarta.xml.bind.annotation.XmlType;
 public class ProductType {
 
     protected Long id;
+    @XmlElement(required = true)
     protected String name;
     protected String description;
+    @XmlElement(required = true)
     protected BigDecimal price;
-    protected Integer stock;
+    protected int stock;
 
     /**
      * Obtiene el valor de la propiedad id.
@@ -145,24 +148,16 @@ public class ProductType {
     /**
      * Obtiene el valor de la propiedad stock.
      * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
      */
-    public Integer getStock() {
+    public int getStock() {
         return stock;
     }
 
     /**
      * Define el valor de la propiedad stock.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
      */
-    public void setStock(Integer value) {
+    public void setStock(int value) {
         this.stock = value;
     }
 
